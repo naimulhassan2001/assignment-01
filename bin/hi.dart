@@ -1,73 +1,51 @@
-import 'package:hi/hi.dart' as hi;
 
-main() {
+class Person{
+  String _firstName;
+  String _lastName;
+  Person({ String firstName =" ", String lastName = ""}): _firstName = firstName, _lastName= lastName;
 
-
-  var teacher = Teacher();
-  teacher.a('Babul ', 'Midha ', '5');
-  teacher.a('Istoak ', 'Ahamed ', '10');
-  teacher.a('Amram ', 'Hosan ', '7');
-  var student = Student();
-  student.a('Sapon ', 'Ahamed ', '3.14');
-  student.a('Jamal ', 'Ahamed', '4.19');
-  var aa = student.persons;
-  var bb = teacher.persons;
-
-
-
-  for (var prop in bb) {
-    print(prop);
+  String get getFullName{
+    return  "${this._firstName} ${this._lastName}";
   }
 
-
-
-  for (var prop in aa) {
-    print(prop);
-  }
-
-}
-
-
-
-
-class Person {
-  List<String> persons = [];
-  a(String frist, String last, var aa) {
-    print(persons);
+  void show(){
+    print("Name: ${this._firstName} ${this._lastName}");
   }
 }
-
-
-
 
 class Teacher extends Person {
+  int _noOfPublications =0 ;
+
+  Teacher({ String firstName =" ", String lastName = "", int noOfpublication=0}):_noOfPublications = noOfpublication,
+        super(firstName: firstName, lastName: lastName);
   @override
-
-
-  a(String frist, String last, var aa) {
-
-    persons.add('name: ' + frist + last +', pubbahitic: '+aa);
+  void show( ){
+    print("Name: ${super.getFullName} , No of Publication : $_noOfPublications");
 
   }
 }
 
-
-
-class Student extends Person {
+class Student extends Person{
+  double _cgpa ;
+  Student({ String firstName =" ", String lastName = "", double cgpa =0.0}):_cgpa = cgpa,
+        super(firstName: firstName, lastName: lastName);
   @override
-  a(String frist, String last, var aa) {
-
-    persons.add('name: ' + frist + last+ ', CGPA: ' + aa );
+  void show( ){
+    print("Name: ${super.getFullName} , CGPA : $_cgpa");
 
   }
 }
+void main(){
 
+  List<Person> personList =[];
+  personList.add(Teacher(firstName:"Babul", lastName: "Mridha", noOfpublication: 5));
+  personList.add(Teacher(firstName:"Istak", lastName: "Ahmed" , noOfpublication: 10));
+  personList.add(Student(firstName:"Sapon", lastName: "Ahmed" , cgpa: 3.14));
+  personList.add(Teacher(firstName:"Amran", lastName: "Hasan", noOfpublication: 7));
+  personList.add(Student(firstName:"Afsan", lastName: "akter", cgpa: 4.19));
 
+  for(Person  person in personList){
+    person.show();
+  }
 
-
-
-
-
-
-
-
+}
